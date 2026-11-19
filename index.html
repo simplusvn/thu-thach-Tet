@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tết Trẻ Hay Tết Xưa – Vẫn Là Tết Nhà | Simplus</title>
+  <meta name="description" content="Chơi thử thách Tết cùng Simplus: chọn đúng sản phẩm cho hoạt động Tết để nhận quà miễn phí. #SimplusYoungTet #SimplusTetTre">
+  <meta property="og:title" content="Tết Trẻ Hay Tết Xưa – Vẫn Là Tết Nhà">
+  <meta property="og:description" content="Tham gia đều được quà. Chọn đúng sản phẩm Simplus cho hoạt động Tết để nhận quà miễn phí.">
+  <meta property="og:image" content="banner.jpg">
+  <link rel="icon" href="logo-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Montserrat:ital,wght@0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ HEADER + 3 TABS ============ -->
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="logo" href="#" aria-label="Simplus"><span class="logo__img"></span></a>
+    <nav class="tabs" role="tablist" aria-label="Điều hướng chương trình">
+      <button class="tab is-active" role="tab" data-tab="join" aria-selected="true">Tham gia chương trình</button>
+      <button class="tab" role="tab" data-tab="steps" aria-selected="false">Các bước tham gia</button>
+      <button class="tab" role="tab" data-tab="rules" aria-selected="false">Thể lệ chương trình</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO BANNER ============ -->
+<section class="hero">
+  <img src="banner.jpg" alt="Simplus – Tết Trẻ Hay Tết Xưa, Vẫn Là Tết Nhà. Quà cho tất cả người tham gia và quà giá trị cho bài viết có tương tác cao." width="2073" height="758">
+</section>
+
+<main class="container">
+
+  <!-- ============ TAB 1: THAM GIA ============ -->
+  <section class="tab-panel is-active" id="tab-join" role="tabpanel">
+
+    <!-- Intro (before playing) -->
+    <div class="intro" id="intro">
+      <div class="intro__visual">
+        <img src="poster-gift.jpg" alt="Mèo Simomo: Quà Tết tặng hết cho mọi người – Tham gia đều được quà">
+      </div>
+      <div class="intro__body">
+        <p class="eyebrow">#SimplusYoungTet · #SimplusTetTre</p>
+        <h1 class="display">Tết Trẻ Hay Tết Xưa<br><span>Vẫn Là Tết Nhà</span></h1>
+        <p class="lead">Mỗi hoạt động Tết đều có một “trợ thủ” Simplus. Chọn đúng sản phẩm để có cơ hội nhận ngay sản phẩm đó <strong>hoàn toàn miễn phí</strong>.</p>
+
+        <ol class="mini-steps">
+          <li><span>1</span><div><b>Đăng ký</b><small>Điền thông tin nhận quà</small></div></li>
+          <li><span>2</span><div><b>Chơi thử thách</b><small>Chọn sản phẩm phù hợp hoạt động Tết</small></div></li>
+          <li><span>3</span><div><b>Chia sẻ &amp; nhận quà</b><small>Đăng ảnh kết quả, Simplus gửi quà tận nhà</small></div></li>
+        </ol>
+
+        <div class="intro__cta">
+          <button class="btn btn--primary btn--lg" id="cta-join">Tham gia ngay <span aria-hidden="true">→</span></button>
+          <p class="date-note">Thời gian: <b>26/12/2026 – 22/01/2027</b></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game (after consent) -->
+    <div class="game" id="game" hidden>
+      <div class="game__head">
+        <div>
+          <p class="eyebrow">Thử thách Tết · Lượt <span id="attempt-no">1</span></p>
+          <h2 class="section-title">Hoạt động này cần sản phẩm nào?</h2>
+        </div>
+        <p class="game__hint">Không giới hạn thời gian và số lượt chơi.</p>
+      </div>
+
+      <div class="game__grid">
+        <!-- Vòng quay: hiện ở chỗ của thẻ hoạt động, quay xong thì biến mất và hiện hoạt động -->
+        <div class="spin" id="spin" hidden>
+          <span class="badge">Lượt chơi mới</span>
+          <h3 class="spin__title">Chọn 1 hoạt động ngày Tết cùng Simplus nha</h3>
+          <div class="wheel">
+            <span class="wheel__pointer" aria-hidden="true"></span>
+            <svg class="wheel__disc" id="wheel-disc" viewBox="-160 -160 320 320" aria-hidden="true"></svg>
+            <button class="wheel__hub" id="btn-spin" type="button">QUAY</button>
+          </div>
+          <p class="wheel__hint" id="wheel-hint" aria-live="polite">Bấm <b>QUAY</b> để vòng quay chọn hoạt động cho bạn</p>
+        </div>
+
+        <article class="activity">
+          <div class="activity__img"><img id="activity-img" src="" alt=""></div>
+          <span class="badge">Hoạt động Tết ngẫu nhiên</span>
+          <h3 class="activity__name" id="activity-name">…</h3>
+          <p class="activity__q">Sản phẩm Simplus nào phù hợp với việc này?</p>
+        </article>
+
+        <div class="products">
+          <h3 class="products__title">Sản phẩm Simplus</h3>
+          <p class="products__sub">Chọn 1 sản phẩm phù hợp nhất với hoạt động bên cạnh.</p>
+          <div class="product-list" id="product-list" role="radiogroup" aria-label="Danh sách sản phẩm"></div>
+          <button class="btn btn--primary btn--block" id="btn-answer" disabled>Chọn sản phẩm này</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Finished (after winning) -->
+    <div class="done card" id="done" hidden>
+      <img src="cat-thumbs.jpg" alt="" class="done__cat">
+      <div>
+        <h2 class="section-title">Bạn đã hoàn thành thử thách!</h2>
+        <p>Sản phẩm của bạn: <b id="done-product">…</b>. Hãy hoàn tất các bước nhận quà nhé.</p>
+        <button class="btn btn--primary" id="btn-open-claim">Xem hướng dẫn nhận quà</button>
+      </div>
+    </div>
+
+    <!-- Video KOL + kênh Simplus + đối tác -->
+    <div class="extras">
+      <div class="extras__video">
+        <video id="kol-video" src="kol-video.mp4" poster="kol-poster.jpg" controls playsinline preload="none"
+               aria-label="Video chương trình Tết Trẻ cùng Simplus"></video>
+      </div>
+      <div class="extras__side">
+        <section class="card follow">
+          <h2 class="extras__title">Theo dõi Simplus để cập nhật nhanh thông tin về chương trình</h2>
+          <div class="follow__list">
+            <a class="social social--fb" href="https://www.facebook.com/simplusvn.official" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.5c0-.9.3-1.6 1.6-1.6h1.7V4.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H7.3v3.2h2.8V22h3.4z"/></svg>
+              <span><b>Facebook</b><small>Simplus_VN</small></span>
+            </a>
+            <a class="social social--ig" href="https://www.instagram.com/simplusvietnam/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 2c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2 .4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.4-.3 1-.4 2-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.7.4 2 .2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.2 1 .3 2 .4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.4.3-1 .4-2 .1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.4-.2-1-.3-2-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.3a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 7.4a2.9 2.9 0 1 0 0-5.8 2.9 2.9 0 0 0 0 5.8zm5.7-7.6a1.1 1.1 0 1 1-2.1 0 1.1 1.1 0 0 1 2.1 0z"/></svg>
+              <span><b>Instagram</b><small>simplusvietnam</small></span>
+            </a>
+            <a class="social social--tt" href="https://www.tiktok.com/@simplus.vn" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.6 2h-3.3v13.4a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V9.2a6.2 6.2 0 1 0 5.3 6.2V8.6a7.9 7.9 0 0 0 4.6 1.5V6.8A4.6 4.6 0 0 1 16.6 2z"/></svg>
+              <span><b>TikTok</b><small>simplus.vn</small></span>
+            </a>
+          </div>
+        </section>
+        <section class="card partners">
+          <h2 class="extras__title">Cơ hội nhận quà từ các thương hiệu lớn</h2>
+          <div class="partners__list">
+            <a class="partner" href="https://www.facebook.com/share/p/19qrPUg3yD/" target="_blank" rel="noopener">
+              <img src="doitac-nitori.jpg" alt="" width="64" height="64">
+              <span><b>Nitori</b><small>Xem chương trình trên Facebook</small></span>
+              <span class="partner__go" aria-hidden="true">→</span>
+            </a>
+            <a class="partner" href="https://www.facebook.com/share/p/1A2Rm5KUTX/" target="_blank" rel="noopener">
+              <img src="doitac-cellphones.jpg" alt="" width="64" height="64">
+              <span><b>CellphoneS</b><small>Xem chương trình trên Facebook</small></span>
+              <span class="partner__go" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TAB 2: CÁC BƯỚC ============ -->
+  <section class="tab-panel" id="tab-steps" role="tabpanel" hidden>
+    <div class="guide">
+      <header class="guide__intro">
+        <p class="eyebrow">Chi tiết về các bước tham gia</p>
+        <h2 class="section-title">Tết Trẻ Hay Tết Xưa, Vẫn Là Tết Nhà<br><span class="guide__tagline">Chọn đúng trợ thủ, rinh quà miễn phí!</span></h2>
+        <p>Tết ai cũng mong, nhưng chuẩn bị Tết thì không ít người ngại. Dọn nhà, lau bàn thờ, nấu cỗ… bao việc dồn về cuối năm khiến nhiều người dần bỏ qua những việc Tết – truyền thống mà ông bà, cha mẹ vẫn gìn giữ bao đời.</p>
+        <p>Simplus tin rằng giữ nét đẹp ấy không cần phải vất vả. Với Tết Trẻ, bạn vẫn cùng gia đình dọn nhà, nấu cỗ, sắm sửa – chỉ là nhẹ nhàng hơn, vì đã có trợ thủ Simplus san sẻ. Bởi suy cho cùng, Tết được gắn kết, sum họp cùng “Nhà” mới là Tết.</p>
+        <p class="guide__highlight">Tết này, để Simplus lo việc nhà, bạn chỉ việc “trẻ” thôi! Chỉ với vài bước đơn giản, bạn có cơ hội nhận ngay một sản phẩm gia dụng Simplus <b>hoàn toàn miễn phí</b>, cùng cơ hội săn <b>3 giải thưởng lớn</b> dành cho những bài review được yêu thích nhất.</p>
+      </header>
+
+      <dl class="info-grid">
+        <div><dt>Thời gian diễn ra</dt><dd>26/12/2026 – 22/01/2027</dd></div>
+        <div><dt>Hashtag chương trình</dt><dd>#SimplusYoungTet #SimplusTetTre</dd></div>
+        <div><dt>Kênh chia sẻ hợp lệ</dt><dd>Facebook hoặc Instagram cá nhân, bài đăng ở chế độ Công khai</dd></div>
+        <div><dt>Tag Simplus</dt><dd>@Simplus_VN (Facebook) hoặc @simplusvietnam (Instagram)</dd></div>
+      </dl>
+
+      <ol class="guide-steps">
+        <li>
+          <h3><small>Bước 1</small>Đăng ký thông tin</h3>
+          <p>Vào tab “Tham gia chương trình”, cửa sổ đăng ký sẽ hiện ra. Bạn điền đầy đủ các thông tin sau:</p>
+          <ul>
+            <li>Họ và tên</li>
+            <li>Số điện thoại Zalo – BTC sẽ liên hệ xác nhận và giao quà qua số này</li>
+            <li>Email</li>
+            <li>Địa chỉ nhận quà – ghi rõ số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố</li>
+            <li>Link trang Facebook hoặc Instagram cá nhân – là tài khoản bạn sẽ dùng để đăng bài tham gia</li>
+          </ul>
+          <p>Bấm <b>Đăng ký ngay</b> để hoàn tất.</p>
+          <p class="note">Lưu ý: Tất cả các trường đều bắt buộc. Mỗi số Zalo, email và địa chỉ chỉ được dùng để đăng ký một lần. Nếu thông tin đã được sử dụng, hệ thống sẽ báo: “Thông tin này đã được sử dụng để tham gia. Mỗi người chỉ được tham gia một lần.”</p>
+        </li>
+        <li>
+          <h3><small>Bước 2</small>Đọc và đồng ý Thể lệ</h3>
+          <p>Sau khi gửi thông tin, bạn sẽ thấy phần <b>Yêu cầu tham gia &amp; Cam kết</b>. Hãy đọc kỹ, sau đó tích vào ô:</p>
+          <p class="quote">☑ Tôi đã đọc và đồng ý với các yêu cầu trên và Thể lệ chương trình.</p>
+          <p>Bạn cần tích chọn ô này thì nút <b>Tiếp tục</b> mới được mở để vào thử thách. Thể lệ đầy đủ xem tại tab <a href="#" data-goto="rules">“Quy định &amp; Thể lệ của chương trình”</a>.</p>
+        </li>
+        <li>
+          <h3><small>Bước 3</small>Tham gia thử thách</h3>
+          <p><b>Cách chơi:</b></p>
+          <ul>
+            <li>Mỗi lượt chơi, màn hình sẽ hiển thị 01 hoạt động ngày Tết ngẫu nhiên (ví dụ: dọn dẹp nhà cửa, nấu ăn đãi khách, chuẩn bị diện Tết…).</li>
+            <li>Bạn chọn sản phẩm Simplus phù hợp nhất để hoàn thành hoạt động đó.</li>
+            <li>Hệ thống trả kết quả ngay.</li>
+          </ul>
+          <p>Không giới hạn số lượt chơi, không giới hạn thời gian – bạn có thể chơi cho đến khi chọn đúng.</p>
+          <div class="outcomes">
+            <div class="outcome outcome--ok">
+              <b>✅ Nếu bạn chọn ĐÚNG</b>
+              <p>Màn hình chúc mừng hiện ra: bạn có cơ hội nhận [Tên sản phẩm] hoàn toàn miễn phí khi hoàn thành các bước tiếp theo. Bấm <b>Tiếp tục</b> để xem hướng dẫn nhận quà (Bước 4 &amp; 5).</p>
+            </div>
+            <div class="outcome outcome--no">
+              <b>❌ Nếu bạn chọn CHƯA ĐÚNG</b>
+              <ul>
+                <li>Hệ thống hiển thị: “Câu trả lời chưa chính xác. Chia sẻ hình ảnh lên kênh cá nhân để có cơ hội thử lại lần nữa nhé!”</li>
+                <li>Chia sẻ ảnh kết quả công khai lên Facebook/Instagram kèm hashtag #SimplusYoungTet #SimplusTetTre và tag Simplus.</li>
+                <li>Tích ô “Tôi đã chia sẻ kết quả (hoặc đã chụp màn hình và chia sẻ)”.</li>
+                <li>Bấm <b>Thử lại</b> để chơi với một hoạt động ngẫu nhiên mới.</li>
+              </ul>
+            </div>
+          </div>
+          <p class="note">Lưu ý: BTC sẽ kiểm tra việc chia sẻ. Hoạt động ở lượt mới có thể trùng với hoạt động bạn đã gặp trước đó.</p>
+        </li>
+        <li>
+          <h3><small>Bước 4</small>Chia sẻ kết quả &amp; gửi xác nhận qua Zalo</h3>
+          <p>Sau khi chọn đúng, bạn hoàn tất 2 việc sau để nhận quà:</p>
+          <h4>4.1. Đăng ảnh kết quả lên mạng xã hội</h4>
+          <ul>
+            <li>Bấm nút <b>Chia sẻ lên Facebook</b> hoặc <b>Chia sẻ lên Instagram</b> ngay trên màn hình. Ảnh kết quả sẽ được đính kèm.</li>
+            <li>Bài đăng phải để chế độ Công khai, có đủ hashtag #SimplusYoungTet #SimplusTetTre và tag @Simplus_VN (Facebook) hoặc @simplusvietnam (Instagram).</li>
+            <li>Đăng trên đúng tài khoản bạn đã khai báo ở Bước 1.</li>
+          </ul>
+          <p class="note">Nếu ảnh không tự đính kèm khi chia sẻ, bạn hãy chụp màn hình kết quả và đăng lên trang cá nhân.</p>
+          <h4>4.2. Gửi ảnh chụp màn hình bài đăng cho BTC</h4>
+          <p>Chụp màn hình bài đăng đã đăng công khai và gửi qua Zalo cho BTC theo số: <b class="js-zalo">[Số Zalo BTC]</b>. Nên gửi từ chính số Zalo bạn đã đăng ký để BTC xác minh nhanh hơn.</p>
+        </li>
+        <li>
+          <h3><small>Bước 5</small>Nhận quà &amp; đăng review sản phẩm</h3>
+          <h4>5.1. Nhận quà</h4>
+          <p>Simplus đối chiếu ảnh bạn gửi với thông tin đăng ký. Sau khi xác nhận qua Zalo, Simplus sẽ giao đúng sản phẩm hiển thị trên website đến địa chỉ bạn đã đăng ký.</p>
+          <h4>5.2. Đăng review trong vòng 10 ngày</h4>
+          <p>Trong vòng 10 ngày kể từ ngày nhận sản phẩm, bạn đăng một bài review ngắn về sản phẩm trên Facebook/Instagram:</p>
+          <ul>
+            <li>Chế độ Công khai</li>
+            <li>Có hashtag #SimplusYoungTet #SimplusTetTre</li>
+            <li>Tag @Simplus_VN (Facebook) hoặc @simplusvietnam (Instagram)</li>
+          </ul>
+          <p class="note note--warn"><b>Quan trọng:</b> Nếu sau 10 ngày bạn chưa đăng review, Simplus sẽ liên hệ nhắc qua Zalo. Nếu vẫn không có bài review, Simplus có quyền thu hồi sản phẩm tại địa chỉ đã giao.</p>
+        </li>
+      </ol>
+
+      <section class="guide-block prize-block">
+        <h3>Cơ hội săn 3 giải thưởng lớn</h3>
+        <p>Bài review hợp lệ ở Bước 5 sẽ tự động tham gia cuộc đua “Review nhận quà giá trị”. 3 bài đăng có lượt tương tác cao nhất sẽ nhận:</p>
+        <div class="prizes prizes--lg">
+          <span><small>🥇 Giải Nhất</small>[Đang cập nhật]</span>
+          <span><small>🥈 Giải Nhì</small>[Đang cập nhật]</span>
+          <span><small>🥉 Giải Ba</small>[Đang cập nhật]</span>
+        </div>
+        <p class="muted">Thời điểm chốt tương tác: <b>01/02/2027</b></p>
+      </section>
+
+      <section class="guide-block">
+        <h3>Những lưu ý quan trọng</h3>
+        <ul>
+          <li>Mỗi người chỉ được nhận quà 01 lần trong suốt chương trình.</li>
+          <li>Tất cả bài đăng phải ở chế độ Công khai và giữ nguyên đến khi chương trình kết thúc để BTC kiểm tra.</li>
+          <li>Phải có đủ cả 2 hashtag và tag đúng trang Simplus thì bài đăng mới hợp lệ.</li>
+          <li>Thông tin đăng ký cần chính xác; BTC không chịu trách nhiệm nếu không giao được quà do sai thông tin.</li>
+          <li>Sản phẩm nhận được là sản phẩm hiển thị trên website khi bạn chọn đúng, không đổi sang sản phẩm khác hoặc quy đổi thành tiền mặt.</li>
+          <li>Chương trình kết thúc trên website ngày 22/01/2027.</li>
+          <li>Chi tiết đầy đủ xem tại tab <a href="#" data-goto="rules">“Quy định &amp; Thể lệ của chương trình”</a>.</li>
+        </ul>
+      </section>
+
+      <section class="guide-block faq">
+        <h3>Câu hỏi thường gặp</h3>
+        <details><summary>Tôi chọn sai thì có bị loại không?</summary><p>Không. Bạn chỉ cần chia sẻ ảnh kết quả, tích xác nhận và chơi lại. Không giới hạn số lượt.</p></details>
+        <details><summary>Tôi có thể chọn sản phẩm mình muốn không?</summary><p>Không. Sản phẩm phụ thuộc vào hoạt động Tết ngẫu nhiên mà bạn nhận được và chọn đúng.</p></details>
+        <details><summary>Bấm chia sẻ nhưng ảnh không hiện thì làm sao?</summary><p>Hãy chụp màn hình kết quả trên website và đăng thủ công lên trang cá nhân, kèm hashtag và tag Simplus.</p></details>
+        <details><summary>Tài khoản Facebook/Instagram của tôi đang để riêng tư có được không?</summary><p>Không. Bài đăng phải để chế độ Công khai để BTC xác minh.</p></details>
+        <details><summary>Bao lâu thì tôi nhận được quà?</summary><p>Sau khi BTC xác nhận qua Zalo, sản phẩm sẽ được giao trong khoảng [X ngày làm việc].</p></details>
+        <details><summary>Tôi cần liên hệ BTC ở đâu?</summary><p>Zalo BTC: <b class="js-zalo">[Số Zalo BTC]</b> – Fanpage: Simplus Việt Nam (@Simplus_VN).</p></details>
+      </section>
+    </div>
+  </section>
+
+  <!-- ============ TAB 3: THỂ LỆ ============ -->
+  <section class="tab-panel" id="tab-rules" role="tabpanel" hidden>
+    <h2 class="section-title center">Quy định &amp; Thể lệ chương trình</h2>
+    <div class="card placeholder">
+      <p class="muted">Thể lệ chính thức và số văn bản xác nhận của Bộ Công Thương sẽ được cập nhật tại đây.</p>
+      <dl class="facts">
+        <div><dt>Tên chương trình</dt><dd>Tết Trẻ Hay Tết Xưa – Vẫn Là Tết Nhà</dd></div>
+        <div><dt>Thời gian</dt><dd>26/12/2026 – 22/01/2027</dd></div>
+        <div><dt>Hashtag</dt><dd>#SimplusYoungTet #SimplusTetTre</dd></div>
+        <div><dt>Văn bản Bộ Công Thương</dt><dd>[Đang cập nhật]</dd></div>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <span class="logo__img logo__img--white"></span>
+  <p>#SimplusYoungTet · #SimplusTetTre</p>
+  <p class="muted-light">Chương trình diễn ra từ 26/12/2026 đến 22/01/2027.</p>
+</footer>
+
+<!-- ================= MODALS ================= -->
+
+<!-- 3.1 Registration -->
+<div class="modal" id="modal-register" role="dialog" aria-modal="true" aria-labelledby="reg-title" hidden>
+  <div class="modal__dialog modal__dialog--register">
+    <button class="modal__close" data-close aria-label="Đóng">×</button>
+    <div class="register__visual"><img src="kol.jpg" alt=""></div>
+    <form class="register__form" id="form-register" novalidate>
+      <span class="logo__img logo__img--sm"></span>
+      <h2 class="register__title" id="reg-title">Đăng ký tham gia</h2>
+      <p class="register__sub">Chia sẻ hình ảnh – Nhận quà Tết</p>
+
+      <label class="field">
+        <span class="field__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span>
+        <input name="name" type="text" autocomplete="name" placeholder="Tên người tham gia *" required>
+        <span class="field__error"></span>
+      </label>
+      <label class="field">
+        <span class="field__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.3A8.5 8.5 0 1 1 21 11.5z"/><circle cx="8.5" cy="11.5" r=".8"/><circle cx="12" cy="11.5" r=".8"/><circle cx="15.5" cy="11.5" r=".8"/></svg></span>
+        <input name="zalo" type="tel" inputmode="tel" autocomplete="tel" placeholder="Số Zalo *" required>
+        <span class="field__error"></span>
+      </label>
+      <label class="field">
+        <span class="field__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+        <input name="email" type="email" autocomplete="email" placeholder="Email *" required>
+        <span class="field__error"></span>
+      </label>
+      <!-- Địa chỉ nhận quà: Tỉnh/Thành phố → Phường/Xã (đơn vị hành chính từ 01/07/2025) + địa chỉ cụ thể -->
+      <div class="field-row">
+        <label class="field">
+          <span class="field__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+          <select name="province" aria-label="Tỉnh/Thành phố nhận quà" required>
+            <option value="">Tỉnh/Thành phố *</option>
+          </select>
+          <span class="field__error"></span>
+        </label>
+        <label class="field">
+          <span class="field__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12"/><path d="M10 21v-6h4v6"/></svg></span>
+          <select name="ward" aria-label="Phường/Xã nhận quà" required disabled>
+            <option value="">Phường/Xã *</option>
+          </select>
+          <span class="field__error"></span>
+        </label>
+      </div>
+      <label class="field">
+        <span class="field__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V21H3z"/><path d="M9 21v-6h6v6"/></svg></span>
+        <input name="street" type="text" autocomplete="address-line1" placeholder="Số nhà, tên đường, thôn/ấp *" required>
+        <span class="field__error"></span>
+      </label>
+      <label class="field">
+        <span class="field__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/></svg></span>
+        <input name="social" type="url" inputmode="url" placeholder="Link Facebook/Instagram bạn sẽ chia sẻ hình ảnh *" required>
+        <span class="field__error"></span>
+      </label>
+
+      <p class="form-error" id="reg-error" role="alert" hidden></p>
+      <button class="btn btn--primary btn--lg register__submit" type="submit">Đăng ký ngay <span aria-hidden="true">→</span></button>
+    </form>
+  </div>
+</div>
+
+<!-- 3.2 Consent -->
+<div class="modal" id="modal-consent" role="dialog" aria-modal="true" aria-labelledby="consent-title" hidden>
+  <div class="modal__dialog modal__dialog--consent">
+    <button class="modal__close" data-close aria-label="Đóng">×</button>
+    <h2 class="modal__title" id="consent-title">Yêu cầu tham gia &amp; Cam kết</h2>
+    <div class="consent__body">
+      <ol class="consent__list">
+        <li>Sau khi hoàn thành thử thách, bạn cần chia sẻ ảnh chụp kết quả lên tài khoản Facebook hoặc Instagram ở chế độ <b>Công khai</b>, kèm hashtag <span class="tag">#SimplusYoungTet</span> <span class="tag">#SimplusTetTre</span>.</li>
+        <li>Chụp màn hình bài đăng và gửi cho Ban tổ chức qua <b>Zalo</b> để xác minh và nhận quà.</li>
+        <li>Sau khi Simplus xác minh thông tin, sản phẩm bạn nhận được (như hiển thị trên website) sẽ được giao đến địa chỉ đã đăng ký.</li>
+        <li>Sau khi nhận sản phẩm, bạn cần đăng một bài review ngắn ở chế độ Công khai trên Facebook hoặc Instagram, kèm hashtag <span class="tag">#SimplusYoungTet</span> <span class="tag">#SimplusTetTre</span>, <b>trong vòng 10 ngày</b> kể từ ngày nhận.</li>
+        <li>Nếu chưa đăng review sau 10 ngày, Simplus sẽ liên hệ qua số Zalo đã đăng ký để nhắc. Nếu vẫn không có review, Simplus có quyền thu hồi sản phẩm tại địa chỉ giao hàng.</li>
+      </ol>
+    </div>
+    <label class="check">
+      <input type="checkbox" id="consent-check">
+      <span class="check__box" aria-hidden="true"></span>
+      <span>Bằng việc đánh dấu vào ô này, tôi xác nhận tham gia chương trình và đồng ý với <a href="#" data-goto="rules">Thể lệ chương trình</a> đã được Bộ Công Thương phê duyệt. Tôi đã đọc và đồng ý với các yêu cầu trên.</span>
+    </label>
+    <button class="btn btn--primary btn--block btn--lg" id="btn-consent" disabled>Tiếp tục</button>
+  </div>
+</div>
+
+<!-- 4.1 Correct – Screen A -->
+<div class="modal" id="modal-correct" role="dialog" aria-modal="true" aria-labelledby="correct-title" hidden>
+  <div class="modal__dialog modal__dialog--correct">
+    <button class="modal__close" data-close aria-label="Đóng">×</button>
+    <img class="correct__cat" src="cat-thumbs.jpg" alt="">
+    <div class="correct__body">
+      <h2 class="correct__title" id="correct-title">Chính xác!</h2>
+      <p>Chúc mừng! Bạn đã chọn đúng sản phẩm và có cơ hội nhận <b class="js-product">…</b> <b class="hl">HOÀN TOÀN MIỄN PHÍ</b> khi hoàn thành đủ các bước.</p>
+      <p>Đón một cái Tết thật “trẻ” cùng <b class="js-product">…</b> từ Simplus nhé!</p>
+      <button class="btn btn--primary btn--lg" id="btn-correct-next">Tiếp tục <span aria-hidden="true">→</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- 4.2 Correct – Screen B: claim steps -->
+<div class="modal" id="modal-claim" role="dialog" aria-modal="true" aria-labelledby="claim-title" hidden>
+  <div class="modal__dialog modal__dialog--wide">
+    <button class="modal__close" data-close aria-label="Đóng">×</button>
+    <div class="result">
+      <div class="result__media">
+        <div class="result__img"><img id="claim-img" alt="Ảnh kết quả của bạn"><span class="spinner" aria-hidden="true"></span></div>
+        <button class="btn btn--ghost btn--block" data-download="correct">Tải ảnh kết quả</button>
+      </div>
+      <div class="result__body">
+        <h2 class="modal__title" id="claim-title">Hoàn tất 4 bước để nhận quà</h2>
+        <ol class="claim-steps">
+          <li>
+            <b>Chia sẻ ảnh kết quả</b>
+            <p>Nút Facebook mở thẳng Facebook với bài đăng có sẵn ảnh kết quả. Nút Instagram mở bảng chia sẻ của điện thoại với ảnh đính kèm, bạn chọn Instagram. Caption được sao chép sẵn, cần có <span class="tag">#SimplusYoungTet</span> <span class="tag">#SimplusTetTre</span> và tag <b>@Simplus_VN</b> / <b>@simplusvietnam</b>. Để chế độ <b>Công khai</b> rồi bấm Đăng.</p>
+            <div class="share-row">
+              <button class="btn btn--fb" data-share="facebook" data-kind="correct"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5z"/></svg>Chia sẻ lên Facebook</button>
+              <button class="btn btn--ig" data-share="instagram" data-kind="correct"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>Chia sẻ lên Instagram</button>
+            </div>
+            <p class="fineprint">Nếu ảnh không được đính kèm khi chia sẻ, vui lòng chụp màn hình kết quả và đăng lên trang cá nhân của bạn.</p>
+          </li>
+          <li>
+            <b>Gửi ảnh chụp bài đăng qua Zalo</b>
+            <p>Chụp màn hình bài đăng và gửi về Zalo của BTC: <b class="js-zalo">…</b></p>
+            <a class="btn btn--zalo btn--sm" id="zalo-link" target="_blank" rel="noopener">Mở Zalo</a>
+          </li>
+          <li>
+            <b>Simplus xác nhận &amp; gửi quà</b>
+            <p>Simplus xác nhận thông tin và gửi đến bạn <b class="js-product">…</b> như hiển thị trên website.</p>
+          </li>
+          <li>
+            <b>Đăng review trong 10 ngày</b>
+            <p>Sau khi nhận hàng, đăng một bài review ngắn ở chế độ Công khai, kèm hashtag và tag như trên. 3 bài có tương tác cao nhất (like + bình luận) nhận giải thưởng lớn.</p>
+            <div class="prizes">
+              <span><small>Giải Nhất</small>Sắp công bố</span>
+              <span><small>Giải Nhì</small>Sắp công bố</span>
+              <span><small>Giải Ba</small>Sắp công bố</span>
+            </div>
+          </li>
+        </ol>
+        <div class="warn"><b>Không đăng review trong 10 ngày?</b> Simplus sẽ nhắc qua Zalo, sau đó thu hồi sản phẩm.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4.3 Wrong answer -->
+<div class="modal" id="modal-wrong" role="dialog" aria-modal="true" aria-labelledby="wrong-title" hidden>
+  <div class="modal__dialog modal__dialog--wide">
+    <div class="result">
+      <div class="result__media">
+        <div class="result__img"><img src="poster-wrong.jpg" alt="Tiếc quá! Câu trả lời chưa đúng rồi – Quà tặng giá trị cho các bài đăng có tương tác cao nhất"></div>
+        <button class="btn btn--ghost btn--block" data-download="wrong">Tải ảnh kết quả</button>
+      </div>
+      <div class="result__body">
+        <h2 class="modal__title" id="wrong-title">Câu trả lời chưa chính xác</h2>
+        <p class="lead-sm">Chia sẻ hình ảnh lên kênh cá nhân để có cơ hội thử lại lần nữa nhé!</p>
+        <p>Đăng ảnh ở chế độ Công khai trên Facebook/Instagram kèm <span class="tag">#SimplusYoungTet</span> <span class="tag">#SimplusTetTre</span> và tag <b>@Simplus_VN</b> (Facebook) hoặc <b>@simplusvietnam</b> (Instagram).</p>
+        <div class="share-row">
+          <button class="btn btn--fb" data-share="facebook" data-kind="wrong"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5z"/></svg>Chia sẻ lên Facebook</button>
+          <button class="btn btn--ig" data-share="instagram" data-kind="wrong"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>Chia sẻ lên Instagram</button>
+        </div>
+        <p class="fineprint">Nếu ảnh không được đính kèm khi chia sẻ, vui lòng chụp màn hình kết quả và đăng lên trang cá nhân của bạn.</p>
+
+        <label class="check">
+          <input type="checkbox" id="shared-check">
+          <span class="check__box" aria-hidden="true"></span>
+          <span>Tôi đã chia sẻ kết quả (hoặc đã chụp màn hình và chia sẻ)</span>
+        </label>
+        <button class="btn btn--primary btn--block btn--lg" id="btn-retry" disabled>Thử lại</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Hướng dẫn hoàn tất bài đăng Facebook (mở cùng lúc với cửa sổ chia sẻ của Facebook) -->
+<div class="modal modal--top" id="sheet-fb" role="dialog" aria-modal="true" aria-labelledby="fb-title" hidden>
+  <div class="modal__dialog modal__dialog--sheet">
+    <button class="modal__close" data-close aria-label="Đóng">×</button>
+    <h2 class="modal__title" id="fb-title">Hoàn tất bài đăng trên Facebook</h2>
+    <ol class="sheet-steps">
+      <li id="fb-step-img">Ảnh kết quả đã được sao chép. Bấm vào ô nội dung trong cửa sổ Facebook và nhấn <b>Ctrl+V</b> để dán ảnh vào bài.</li>
+      <li id="fb-step-caption">Bấm <b>Sao chép caption</b> bên dưới, rồi dán vào ô nội dung (có đủ 2 hashtag và tag @Simplus_VN).</li>
+      <li>Đổi quyền riêng tư (nút <b>Chỉ mình tôi / Bạn bè</b> dưới tên bạn) thành <b>Công khai</b>, rồi bấm <b>Đăng</b>.</li>
+    </ol>
+    <div class="sheet-actions">
+      <button class="btn btn--ghost" id="fb-recopy">Sao chép caption</button>
+      <button class="btn btn--primary" data-close>Tôi đã đăng xong</button>
+    </div>
+    <p class="fineprint" id="fb-popup-note">Không thấy cửa sổ Facebook? Hãy cho phép trình duyệt mở cửa sổ bật lên (pop-up) rồi bấm chia sẻ lại.</p>
+  </div>
+</div>
+
+<!-- Instagram trên máy tính: chuyển sang điện thoại -->
+<div class="modal modal--top" id="sheet-ig" role="dialog" aria-modal="true" aria-labelledby="ig-title" hidden>
+  <div class="modal__dialog modal__dialog--sheet">
+    <button class="modal__close" data-close aria-label="Đóng">×</button>
+    <h2 class="modal__title" id="ig-title">Đăng lên Instagram từ điện thoại</h2>
+    <div id="ig-desktop">
+      <p>Instagram chỉ cho đăng ảnh từ ứng dụng trên điện thoại. Quét mã bên dưới bằng camera điện thoại để mở ảnh kết quả, lưu ảnh rồi đăng lên Instagram.</p>
+      <div class="qr" id="ig-qr" aria-label="Mã QR mở ảnh kết quả"></div>
+    </div>
+    <div id="ig-mobile" hidden>
+      <p id="ig-mobile-text"></p>
+    </div>
+    <p><span id="ig-copied">Caption có hashtag và tag @simplusvietnam <b>đã được sao chép</b>. </span>Nhớ để bài đăng ở chế độ <b>Công khai</b>.</p>
+    <div class="sheet-actions">
+      <button class="btn btn--ghost" id="ig-download">Tải ảnh về máy này</button>
+      <button class="btn btn--primary" id="ig-share-now" hidden>Chia sẻ ảnh lên Instagram</button>
+      <a class="btn btn--primary" id="ig-open-app" href="https://www.instagram.com/" hidden>Mở Instagram</a>
+      <button class="btn btn--primary" id="ig-ok" data-close>Đã hiểu</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+<script src="config.js"></script>
+<script src="diachi.js"></script>
+<script src="share-images.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
