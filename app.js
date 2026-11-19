@@ -32,21 +32,30 @@ const API = {
     store.set('registry', reg);
     return { ok: true, id };
   },
-  /** Ghi nhận người dùng đã tick đồng ý điều khoản. Gửi ngầm, không bắt người chơi chờ. */
+  /** Ghi nhận người dùng đã tick đồng ý điều khoản. Đưa vào hàng đợi, gửi gộp cùng lượt chơi. */
   async logConsent(participantId) {
-    if (useServer()) callServer('consent', { participantId }, { wait: false });
+    if (useServer()) EventQueue.add({ type: 'consent' });
     return { ok: true };
   },
-  /** Ghi log mỗi lượt chơi / bấm chia sẻ / xác nhận đã chia sẻ. Gửi ngầm, không bắt người chơi chờ. */
+  /** Ghi log lượt chơi / bấm chia sẻ / xác nhận đã chia sẻ. Gom lại, mỗi lượt chơi chỉ gửi 1 lần:
+   *  - trả lời ĐÚNG → gửi ngay (để Sheet cập nhật "Đã chọn đúng")
+   *  - trả lời SAI → chờ tới khi bấm "Thử lại" (gửi chung lượt trả lời + các lần bấm chia sẻ + xác nhận)
+   *  - bấm chia sẻ sau khi thắng → gửi khi người chơi rời trang / chuyển sang Facebook, Instagram */
   async logAttempt(entry) {
-    if (useServer()) {
+    if (!useServer()) return { ok: true };
+    if (entry.shareClicked) {
+      EventQueue.add({ type: 'share', attempt: entry.attempt, platform: entry.shareClicked });
+    } else if (entry.shareConfirmed) {
+      EventQueue.add({ type: 'shareConfirmed', attempt: entry.attempt });
+      EventQueue.flush();
+    } else {
       const act = ACTIVITIES.find((a) => a.id === entry.activityId);
       const prod = productOf(entry.chosen);
-      callServer('attempt', {
-        ...entry,
-        activityName: act ? act.name : '',
-        chosenName: prod ? productLabel(prod) : '',
-      }, { wait: false });
+      EventQueue.add({
+        type: 'answer', attempt: entry.attempt, correct: !!entry.correct,
+        activityName: act ? act.name : '', chosenName: prod ? productLabel(prod) : '',
+      });
+      if (entry.correct) EventQueue.flush();
     }
     return { ok: true };
   },
@@ -62,6 +71,39 @@ const API = {
     return { ok: true };
   },
 };
+
+/* Hàng đợi sự kiện: gom log lại để mỗi lượt chơi chỉ gọi server 1 lần (giảm tải Google Sheets lúc đông).
+   Lưu cả vào trình duyệt: nếu gửi lỗi hoặc người chơi đóng trang, lần sau mở lại sẽ gửi bù. */
+const EventQueue = {
+  sending: false,
+  list() { return store.get('pendingEvents', []); },
+  add(ev) {
+    const q = this.list();
+    q.push({ ...ev, at: new Date().toISOString() });
+    store.set('pendingEvents', q.slice(-50));
+  },
+  async flush() {
+    const q = this.list();
+    if (!useServer() || this.sending || !q.length || !state.participantId) return;
+    this.sending = true;
+    try {
+      const res = await callServer('events', { participantId: state.participantId, events: q });
+      if (res && res.ok) {
+        // Chỉ xoá những sự kiện vừa gửi (có thể đã có sự kiện mới thêm vào trong lúc chờ)
+        store.set('pendingEvents', this.list().slice(q.length));
+      }
+    } catch (err) { /* giữ lại, gửi bù lần sau */ } finally { this.sending = false; }
+  },
+  // Người chơi rời trang / chuyển sang app Facebook, Instagram: gửi nốt bằng sendBeacon (trình duyệt vẫn gửi dù trang đã ẩn)
+  beacon() {
+    const q = this.list();
+    if (!useServer() || !q.length || !state.participantId || !navigator.sendBeacon) return;
+    const ok = navigator.sendBeacon(CONFIG.apiUrl, JSON.stringify({ action: 'events', participantId: state.participantId, events: q }));
+    if (ok) store.set('pendingEvents', []);
+  },
+};
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') EventQueue.beacon(); });
+window.addEventListener('pagehide', () => EventQueue.beacon());
 
 /* ---------- 2. LƯU TRẠNG THÁI NGƯỜI CHƠI (trên trình duyệt) ---------- */
 const store = {
@@ -232,6 +274,7 @@ form.addEventListener('submit', async (e) => {
         DUPLICATE: 'Thông tin này đã được sử dụng để tham gia. Mỗi người chỉ được tham gia một lần.',
         INVALID: 'Thông tin chưa hợp lệ, vui lòng kiểm tra lại các ô đã điền.',
         NETWORK: 'Chưa kết nối được tới hệ thống. Vui lòng kiểm tra mạng và bấm Đăng ký lại.',
+        BUSY: 'Hệ thống đang có nhiều người đăng ký cùng lúc. Vui lòng đợi vài giây rồi bấm Đăng ký lại.',
       }[res.code] || 'Có lỗi xảy ra, vui lòng thử lại.';
       errBox.hidden = false;
       return;
@@ -710,6 +753,7 @@ function init() {
   if (state.stage === 'playing') renderActivity();
   if (state.stage === 'won') fillProductText();
   renderStage();
+  EventQueue.flush(); // gửi bù log còn sót từ lần trước (nếu có)
   // Không tự mở popup khi mới vào: người xem bấm "Tham gia ngay" hoặc tab 1 thì mới hiện form đăng ký.
 }
 init();
